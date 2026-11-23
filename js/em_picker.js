@@ -66,7 +66,11 @@
     location.replace('https://accounts.google.com/o/oauth2/v2/auth?' + q.toString());
   }
 
-  function build() {
+  // [top] 전체 화면 Picker (2026-11-23 시험). 페이지 안에 끼운 Picker는 크로스 사이트 추적 방지가 켜진 Safari에서
+  //   Google 로그인 쿠키를 못 써 "Can't access your Google Account"가 된다. Picker 주소(toUri)를 맨 바깥 화면으로
+  //   열면 Google이 당사자라 쿠키가 막히지 않는다. 대신 고른 결과는 돌려받지 못한다 — 파일을 고르는 순간 앱에
+  //   권한이 생기는지에 기댄다. 사용자가 창을 닫으면 앱이 동기화해서 그 파일이 보이는지 확인한다.
+  function build(top) {
     try {
       var builder = new google.picker.PickerBuilder();
       if (mode === 'device') {
@@ -105,7 +109,15 @@
             back({ action: 'cancel' });
           }
         })
-        .build();
+      ;
+      if (top) {
+        status('Google Picker로 이동합니다… 파일을 고른 뒤 이 창을 닫아 주세요.');
+        var uri = picker.toUri();
+        if (uri.charAt(0) === '/') uri = 'https://docs.google.com' + uri; // 상대 주소로 올 때
+        location.href = uri;
+        return;
+      }
+      picker = picker.build();
       picker.setVisible(true);
       status('');
     } catch (e) {
@@ -140,13 +152,18 @@
       var btn = document.createElement('button');
       btn.className = 'em_picker_go';
       btn.textContent = 'Picker 열기';
-      btn.onclick = function () { btn.remove(); next(); };
+      var btn2 = document.createElement('button');
+      btn2.className = 'em_picker_go';
+      btn2.textContent = '전체 화면 Picker (시험)';
+      btn.onclick = function () { btn.remove(); btn2.remove(); next(false); };
+      btn2.onclick = function () { btn.remove(); btn2.remove(); next(true); };
       box.parentNode.appendChild(btn);
+      box.parentNode.appendChild(btn2);
     });
   }
 
-  function loadPicker() {
-    gapi.load('picker', { callback: build, onerror: function () { window.emPickerFail('Picker를 불러오지 못했습니다.'); } });
+  function loadPicker(top) {
+    gapi.load('picker', { callback: function () { build(top); }, onerror: function () { window.emPickerFail('Picker를 불러오지 못했습니다.'); } });
   }
 
   window.emPickerStart = function () {
