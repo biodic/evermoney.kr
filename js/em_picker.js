@@ -5,6 +5,8 @@
   var token = params.get('t');
   var key = params.get('k');
   var appId = params.get('a');
+  var mode = params.get('m') || 'folder'; // folder: 폴더 고르기 · files: 파일 고르기
+  var parent = params.get('p');           // files일 때 처음 열 폴더 (없으면 내 드라이브)
   // 토큰이 방문 기록에 남지 않게 주소에서 지운다.
   try { history.replaceState(null, '', location.pathname); } catch (e) {}
 
@@ -24,12 +26,23 @@
 
   function build() {
     try {
-      var shared = new google.picker.DocsView()
-        .setIncludeFolders(true).setSelectFolderEnabled(true).setOwnedByMe(false).setLabel('공유 문서함');
-      var mine = new google.picker.DocsView(google.picker.ViewId.FOLDERS)
-        .setSelectFolderEnabled(true).setLabel('내 드라이브');
-      var picker = new google.picker.PickerBuilder()
-        .addView(shared).addView(mine)
+      var builder = new google.picker.PickerBuilder();
+      if (mode === 'files') {
+        // 동기화 폴더에서 바로 연다. 폴더로 들어갈 수는 있지만 고를 수 있는 것은 파일뿐이다.
+        var inFolder = new google.picker.DocsView().setIncludeFolders(true).setSelectFolderEnabled(false)
+          .setMode(google.picker.DocsViewMode.LIST).setLabel('동기화 폴더');
+        if (parent) inFolder.setParent(parent);
+        var search = new google.picker.DocsView().setQuery('emsync').setOwnedByMe(false)
+          .setMode(google.picker.DocsViewMode.LIST).setLabel('에버머니 파일');
+        builder.addView(inFolder).addView(search);
+      } else {
+        var shared = new google.picker.DocsView()
+          .setIncludeFolders(true).setSelectFolderEnabled(true).setOwnedByMe(false).setLabel('공유 문서함');
+        var mine = new google.picker.DocsView(google.picker.ViewId.FOLDERS)
+          .setSelectFolderEnabled(true).setLabel('내 드라이브');
+        builder.addView(shared).addView(mine);
+      }
+      var picker = builder
         .setOAuthToken(token).setDeveloperKey(key).setAppId(appId)
         .setOrigin(location.protocol + '//' + location.host)
         .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
