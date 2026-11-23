@@ -112,7 +112,7 @@
       ;
       if (top) {
         status('Google Picker로 이동합니다… 파일을 고른 뒤 이 창을 닫아 주세요.');
-        var uri = picker.toUri();
+        var uri = String(picker.toUri()); // 문자열이 아니라 주소 객체로 온다(2026-11-23 실기기)
         if (uri.charAt(0) === '/') uri = 'https://docs.google.com' + uri; // 상대 주소로 올 때
         location.href = uri;
         return;
