@@ -32,6 +32,7 @@
   var query = params.get('q');            // device일 때 찾을 파일 이름 (예: "에버머니 동기화 파일 (아이폰)")
   var clientId = params.get('c');         // 웹 클라이언트 ID — 있으면 먼저 Google 로그인
   var email = params.get('e');            // 로그인 화면에 미리 넣을 계정
+  var debug = params.get('d') === '1';    // 개발 빌드 — 단계를 화면에 보이고, 눌러야 Picker를 연다
 
   function status(text) {
     var el = document.getElementById('em_picker_status');
@@ -50,7 +51,7 @@
   // 앱이 준 값을 state에 실어 Google 로그인으로 간다. 토큰(t)은 싣지 않는다 — 돌아오면 새 토큰을 받는다.
   function login() {
     var keep = new URLSearchParams();
-    ['k', 'a', 'm', 'p', 'q', 'c', 'e'].forEach(function (n) { if (params.get(n)) keep.set(n, params.get(n)); });
+    ['k', 'a', 'm', 'p', 'q', 'c', 'e', 'd'].forEach(function (n) { if (params.get(n)) keep.set(n, params.get(n)); });
     var state = btoa(keep.toString()).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     var q = new URLSearchParams({
       client_id: clientId,
@@ -112,6 +113,42 @@
     }
   }
 
+  // [진단] (2026-11-23) "Can't access your Google Account"의 원인을 가리기 위해 단계를 보인다.
+  function diag(next) {
+    var box = document.getElementById('em_picker_status');
+    var lines = [];
+    function show() { if (box) box.textContent = lines.join('\n'); }
+    lines.push('로그인 단계 거침: ' + (fromLogin ? '예' : '아니오') + ' · 웹 클라이언트: ' + (clientId ? '있음' : '없음'));
+    lines.push('앱 계정(e): ' + (email || '-'));
+    lines.push('토큰: ' + (token ? '있음 (' + token.length + '자)' : '없음'));
+    show();
+    var waits = [];
+    if (token) {
+      waits.push(fetch('https://oauth2.googleapis.com/tokeninfo?access_token=' + encodeURIComponent(token))
+        .then(function (r) { return r.json(); })
+        .then(function (j) { lines.push('토큰 계정: ' + (j.email || '-') + ' · 범위: ' + (j.scope || j.error_description || '-')); })
+        .catch(function (e) { lines.push('토큰 확인 실패: ' + e); }));
+    }
+    if (document.hasStorageAccess) {
+      waits.push(document.hasStorageAccess()
+        .then(function (v) { lines.push('저장소 접근: ' + v); })
+        .catch(function () { lines.push('저장소 접근: 확인 불가'); }));
+    }
+    lines.push('쿠키 사용: ' + navigator.cookieEnabled + ' · ' + navigator.userAgent);
+    Promise.all(waits).then(function () {
+      show();
+      var btn = document.createElement('button');
+      btn.className = 'em_picker_go';
+      btn.textContent = 'Picker 열기';
+      btn.onclick = function () { btn.remove(); next(); };
+      box.parentNode.appendChild(btn);
+    });
+  }
+
+  function loadPicker() {
+    gapi.load('picker', { callback: build, onerror: function () { window.emPickerFail('Picker를 불러오지 못했습니다.'); } });
+  }
+
   window.emPickerStart = function () {
     if (fromLogin && hash.has('error')) {
       window.emPickerFail('Google 로그인을 마치지 못했습니다. (' + hash.get('error') + ')');
@@ -129,6 +166,7 @@
       window.emPickerFail('에버머니 앱에서 열어 주세요.');
       return;
     }
-    gapi.load('picker', { callback: build, onerror: function () { window.emPickerFail('Picker를 불러오지 못했습니다.'); } });
+    if (debug) { diag(loadPicker); return; }
+    loadPicker();
   };
 })();

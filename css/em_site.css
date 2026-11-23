@@ -32,4 +32,5 @@ a { color: var(--em_point); }
 .em_en { color: var(--em_sub); font-size: 14px; font-style: italic; }
 .em_footer { border-top: 1px solid var(--em_line); padding-top: 20px; color: var(--em_sub); font-size: 14px; }
 @media (max-width: 480px) { .em_wrap { padding: 32px 16px 60px; } .em_app_name { font-size: 24px; } .em_doc_title { font-size: 22px; } }
-.em_picker_status { margin: 12px 0 0; color: var(--em_sub); font-size: 15px; }
+.em_picker_status { margin: 12px 0 0; color: var(--em_sub); font-size: 15px; white-space: pre-wrap; word-break: break-all; }
+.em_picker_go { margin: 16px 0 0; padding: 12px 20px; border: 0; border-radius: 10px; background: #2f6fed; color: #fff; font-size: 16px; }
