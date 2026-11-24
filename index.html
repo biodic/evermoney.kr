@@ -3,41 +3,211 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>에버머니 EverMoney</title>
-<meta name="description" content="사라지지 않는 기록, 일기장이 되는 평생 가계부 - 에버머니">
-<link rel="stylesheet" href="css/em_site.css">
+<title>에버머니 EverMoney - 일기장이 되는 평생 가계부</title>
+<meta name="description" content="사라지지 않는 기록, 일기장이 되는 평생 가계부 - 에버머니. 서버 없이 내 기기와 내 클라우드에만 저장합니다.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="에버머니 EverMoney">
+<meta property="og:description" content="사라지지 않는 기록, 일기장이 되는 평생 가계부">
+<meta property="og:url" content="https://evermoney.kr/">
+<meta name="theme-color" content="#1999FC">
+<link rel="icon" type="image/png" href="image/em_home_favicon.png">
+<link rel="apple-touch-icon" href="image/em_home_touch_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/em_home.css">
 </head>
 <body>
-<div class="em_wrap">
-  <header class="em_header">
-    <h1 class="em_app_name">에버머니 EverMoney</h1>
-    <p class="em_app_desc">사라지지 않는 기록, 일기장이 되는 평생 가계부</p>
-    <nav class="em_nav">
-      <a href="privacy.html">개인정보 처리방침</a>
-      <!-- <a href="mailto:[문의 이메일]">문의하기</a> -->
-    </nav>
-  </header>
 
-  <section class="em_section">
-    <h2 class="em_section_title">에버머니는</h2>
-    <ul class="em_feature_list">
-      <li>가계부 내역을 이용자의 기기 안에만 저장합니다. 개발자는 별도의 서버를 운영하지 않으며, 이용자의 정보를 받아 보관하지 않습니다.</li>
-      <li>카드·은행 문자 메시지를 복사하면 기기 안에서 분석하여 가계부 작성을 돕습니다.</li>
-      <li>이용자가 원하는 경우 P2P(같은 Wi-Fi), iCloud Drive, Google Drive를 통해 이용자의 기기끼리 가계부를 동기화합니다. 주고받는 내용은 기기에서 암호화됩니다.</li>
-      <li>백업 파일은 이용자가 정한 암호로 암호화되며, 이용자가 고른 곳에 저장됩니다.</li>
-    </ul>
+<!-- 첫 화면 : 왼쪽은 소개와 받기 버튼, 오른쪽은 "가계부가 일기장이 되는" 예시 -->
+<header class="em_home_hero">
+  <div class="em_home_hero_text">
+    <div class="em_home_top">
+      <a class="em_home_logo" href="./" aria-label="에버머니 홈">
+        <img class="em_home_logo_icon" src="image/em_home_logo_icon.png" alt="" width="44" height="44">
+        <img class="em_home_logo_wordmark" src="image/em_home_logo_wordmark.png" alt="ever money" width="200" height="29">
+      </a>
+      <a class="em_home_top_link" href="privacy.html">개인정보 처리방침</a>
+    </div>
+
+    <div class="em_home_intro">
+      <h1 class="em_home_title">사라지지 않는 기록,<br>일기장이 되는 평생&nbsp;가계부</h1>
+      <p class="em_home_lead"><span class="em_home_sentence">카드 청구금액까지 원 단위로 맞는 복식부기 가계부입니다.</span><span class="em_home_sentence">서버 없이 내 기기와 내 클라우드에만 남아,<br class="em_home_br">오늘 적은 한 줄을 먼 훗날에도 그대로 펼쳐 보실 수 있습니다.</span></p>
+
+      <div class="em_home_store">
+        <a class="em_home_store_btn" href="#" data-store="ios" role="button"><img src="image/em_home_store_ios.svg" alt="Download on the App Store" width="168" height="56"></a>
+        <a class="em_home_store_btn" href="#" data-store="android" role="button"><img src="image/em_home_store_android.svg" alt="Get it on Google Play" width="168" height="56"></a>
+      </div>
+      <p class="em_home_store_status">곧 출시됩니다. 지금은 출시를 준비하고 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- 예시 화면 (실제 데이터가 아니다) -->
+  <div class="em_home_hero_diary" role="img" aria-label="예시: 오랜 세월 가계부에 남은 기록. 내역마다 짧은 메모가 함께 적혀 있다.">
+    <ol class="em_home_diary_list" aria-hidden="true">
+      <li class="em_home_diary_item">
+        <p class="em_home_diary_date">2026.11.24 화</p>
+        <p class="em_home_diary_row"><span class="em_home_diary_type em_home_type_out">지출</span><span class="em_home_diary_name">첫 월급 기념 저녁</span><span class="em_home_diary_amount em_home_amount_out">84,000</span></p>
+        <p class="em_home_diary_memo">부모님 모시고. 아빠가 계산하려는 걸 겨우 말렸다.</p>
+      </li>
+      <li class="em_home_diary_item">
+        <p class="em_home_diary_date">2029.05.19 토</p>
+        <p class="em_home_diary_row"><span class="em_home_diary_type em_home_type_out">지출</span><span class="em_home_diary_name">이삿짐 센터</span><span class="em_home_diary_amount em_home_amount_out">650,000</span></p>
+        <p class="em_home_diary_memo">처음 생긴 우리 집. 비가 와서 다 젖었는데 계속 웃음이 났다.</p>
+      </li>
+      <li class="em_home_diary_item">
+        <p class="em_home_diary_date">2034.03.02 목</p>
+        <p class="em_home_diary_row"><span class="em_home_diary_type em_home_type_out">지출</span><span class="em_home_diary_name">입학식 꽃다발</span><span class="em_home_diary_amount em_home_amount_out">25,000</span></p>
+        <p class="em_home_diary_memo">가방이 아이보다 커 보였다.</p>
+      </li>
+      <li class="em_home_diary_item">
+        <p class="em_home_diary_date">2041.08.09 금</p>
+        <p class="em_home_diary_row"><span class="em_home_diary_type em_home_type_in">수입</span><span class="em_home_diary_name">적금 만기</span><span class="em_home_diary_amount em_home_amount_in">12,000,000</span></p>
+        <p class="em_home_diary_memo">칠 년을 부었다. 수고했어.</p>
+      </li>
+      <li class="em_home_diary_item">
+        <p class="em_home_diary_date">2046.11.24 토</p>
+        <p class="em_home_diary_row"><span class="em_home_diary_type em_home_type_out">지출</span><span class="em_home_diary_name">저녁 식사</span><span class="em_home_diary_amount em_home_amount_out">132,000</span></p>
+        <p class="em_home_diary_memo">오래전 오늘의 기록을 같이 읽었다.</p>
+      </li>
+    </ol>
+  </div>
+</header>
+
+<main class="em_home_main">
+
+  <!-- 1. 카드 : 청구금액 · 실적 · 청구/사용 구분 -->
+  <section class="em_home_card">
+    <div class="em_home_card_text">
+      <h2 class="em_home_section_title">카드값은 결제일에<br>빠져나갈 금액 그대로</h2>
+      <p class="em_home_section_desc"><span class="em_home_sentence">쓴 금액을 더하기만 해서는 카드값이 맞지 않습니다.</span><span class="em_home_sentence">에버머니는 카드사가 청구서를 만드는 방식대로 계산합니다.</span></p>
+      <dl class="em_home_point">
+        <div class="em_home_point_item">
+          <dt class="em_home_point_title">청구금액이 맞습니다</dt>
+          <dd class="em_home_point_desc"><span class="em_home_sentence">청구할인, 실적 제외 여부, 할부 회차까지 모두 따져 카드 결제일 기준의 청구금액을 오차 없이 계산합니다.</span><span class="em_home_sentence">결제일이 되면 그 금액이 가계부의 결제 계좌에서 카드대금으로 빠져나갑니다.</span></dd>
+        </div>
+        <div class="em_home_point_item">
+          <dt class="em_home_point_title">실적이 맞습니다</dt>
+          <dd class="em_home_point_desc">실적으로 인정되지 않는 내역을 가려내, 카드별 실적 달성 현황을 정확하게 보여 드립니다.</dd>
+        </div>
+        <div class="em_home_point_item">
+          <dt class="em_home_point_title">청구와 사용을 나눠 봅니다</dt>
+          <dd class="em_home_point_desc"><span class="em_home_sentence">이번 결제일에 청구되는 내역과 이번 달에 사용한 내역은 서로 다릅니다.</span><span class="em_home_sentence">신용카드의 청구 현황과 사용 현황을 따로 조회합니다.</span></dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- 예시 화면 (실제 데이터가 아니다) -->
+    <div class="em_home_bill" role="img" aria-label="예시: 생활카드의 12월 14일 청구금액. 이용 내역 486,300원에 할부 회차 85,000원을 더하고 청구할인 12,400원을 빼 558,900원. 결제일에 급여통장에서 빠져나간다. 이번 달 실적은 목표 300,000원 중 412,600원으로 달성.">
+      <div class="em_home_bill_sheet" aria-hidden="true">
+        <p class="em_home_bill_head"><span class="em_home_bill_card">생활카드</span><span class="em_home_bill_due">12월 14일 결제</span></p>
+        <p class="em_home_bill_row"><span>이용 내역 12건</span><span class="em_home_bill_num">486,300</span></p>
+        <p class="em_home_bill_row"><span>할부 2건, 이번 달 회차</span><span class="em_home_bill_num">+ 85,000</span></p>
+        <p class="em_home_bill_row"><span>청구할인</span><span class="em_home_bill_num em_home_bill_minus">− 12,400</span></p>
+        <p class="em_home_bill_total"><span>청구금액</span><span class="em_home_bill_num">558,900</span></p>
+        <p class="em_home_bill_pay">12월 14일, 급여통장에서 558,900원이 빠져나갑니다</p>
+      </div>
+      <div class="em_home_bill_sheet em_home_bill_goal" aria-hidden="true">
+        <p class="em_home_bill_head"><span class="em_home_bill_card">이번 달 실적</span><span class="em_home_bill_done">달성</span></p>
+        <p class="em_home_goal_num"><strong>412,600</strong> / 300,000</p>
+        <p class="em_home_goal_bar"><span class="em_home_goal_fill"></span></p>
+        <p class="em_home_goal_note">실적 제외 2건 73,700원은 뺐습니다</p>
+      </div>
+    </div>
   </section>
 
-  <!--
-  <section class="em_section">
-    <h2 class="em_section_title">문의</h2>
-    <p>이메일: <a href="mailto:[문의 이메일]">[문의 이메일]</a></p>
+  <!-- 2. 서버 없음 + 동기화 -->
+  <section class="em_home_server">
+    <div class="em_home_server_text">
+      <h2 class="em_home_section_title">서버 없이,<br>다른 기기와 함께 씁니다</h2>
+      <p class="em_home_section_desc"><span class="em_home_sentence">에버머니에는 회원가입도, 운영 서버도 없습니다.</span><span class="em_home_sentence">개발자는 이용자의 가계부를 받아 보관하지 않으며 들여다볼 수도 없습니다.</span><span class="em_home_sentence">서비스가 문을 닫아 기록이 사라지는 일이 없습니다.</span></p>
+      <p class="em_home_section_desc"><span class="em_home_sentence">동기화는 한쪽을 덮어쓰지 않고 두 기기의 내역을 합칩니다.</span><span class="em_home_sentence">주고받는 내용은 기기에서 암호화되고, 앱을 열 때와 저장할 때 자동으로 맞춰집니다.</span></p>
+    </div>
+    <div class="em_home_flow" role="img" aria-label="가계부는 이 기기, 내 클라우드, 다른 기기 사이에서만 오간다. 에버머니의 서버는 없다.">
+      <div class="em_home_flow_line" aria-hidden="true">
+        <span class="em_home_flow_node">이 기기</span>
+        <span class="em_home_flow_link"></span>
+        <span class="em_home_flow_node em_home_flow_cloud">내 클라우드</span>
+        <span class="em_home_flow_link"></span>
+        <span class="em_home_flow_node">다른 기기</span>
+      </div>
+      <p class="em_home_flow_none" aria-hidden="true">에버머니 서버 <strong>없음</strong></p>
+    </div>
   </section>
--->
 
-  <footer class="em_footer">
-    <p>© 에버머니 EverMoney</p>
-  </footer>
-</div>
+  <section class="em_home_sync" aria-label="동기화 방법 세 가지">
+    <article class="em_home_sync_item">
+      <h3 class="em_home_sync_title">iCloud Drive</h3>
+      <p class="em_home_sync_good">Apple 기기끼리 가장 간단합니다</p>
+      <p class="em_home_sync_desc"><span class="em_home_sentence">iCloud Drive에 폴더를 하나 만들어 동기화 폴더로 고르면 됩니다.</span><span class="em_home_sentence">Apple 계정이 다른 가족과는 그 폴더를 공유 폴더로 만들어 함께 씁니다.</span></p>
+    </article>
+    <article class="em_home_sync_item">
+      <h3 class="em_home_sync_title">Google Drive</h3>
+      <p class="em_home_sync_good">iPhone과 Android 사이에도 됩니다</p>
+      <p class="em_home_sync_desc"><span class="em_home_sentence">Google 계정을 연결하고 다른 기기에서 QR 코드를 찍으면 이어집니다.</span><span class="em_home_sentence">계정이 다른 가족과도 QR 코드만 서로 찍으면 되고, 필요한 파일의 공유는 앱이 알아서 합니다.</span></p>
+    </article>
+    <article class="em_home_sync_item">
+      <h3 class="em_home_sync_title">같은 Wi-Fi (P2P)</h3>
+      <p class="em_home_sync_good">인터넷도 계정도 필요 없습니다</p>
+      <p class="em_home_sync_desc"><span class="em_home_sentence">같은 Wi-Fi에 있는 두 기기가 클라우드를 거치지 않고 직접 주고받습니다.</span><span class="em_home_sentence">처음 한 번만 6자리 코드로 연결해 두면 됩니다.</span></p>
+    </article>
+  </section>
+
+  <!-- 3. 그 밖의 기능 -->
+  <section class="em_home_feature" aria-label="그 밖의 기능">
+    <article class="em_home_feature_item">
+      <svg class="em_home_feature_icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M11 6.5H9A2.5 2.5 0 006.5 9v16A2.5 2.5 0 009 27.5h14a2.5 2.5 0 002.5-2.5V9A2.5 2.5 0 0023 6.5h-2M12.5 4.5h7A1.5 1.5 0 0121 6v1a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 0111 7V6a1.5 1.5 0 011.5-1.5zM11.5 15h9M11.5 20h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3 class="em_home_feature_title">문자를 복사하면 입력이 끝납니다</h3>
+      <p class="em_home_feature_desc"><span class="em_home_sentence">카드·은행 문자를 복사하고 에버머니를 열면 금액과 사용처, 카드가 채워집니다.</span><span class="em_home_sentence">문자 내용은 기기 안에서만 분석합니다.</span></p>
+    </article>
+    <article class="em_home_feature_item">
+      <svg class="em_home_feature_icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 7.5h16A2.5 2.5 0 0126.5 10v14a2.500 2.5 0 01-2.5 2.5H8A2.5 2.5 0 015.5 24V10A2.5 2.5 0 018 7.5zM5.5 13h21M11 4.5v5M21 4.5v5M11.500 20.500l3 3 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3 class="em_home_feature_title">월 고정금액은 알아서 등록됩니다</h3>
+      <p class="em_home_feature_desc"><span class="em_home_sentence">구독료, 통신비, 적금처럼 매달 나가는 돈은 정해 둔 날짜에 자동으로 등록됩니다.</span><span class="em_home_sentence">휴일이면 앞뒤 영업일로 옮길 수 있습니다.</span></p>
+    </article>
+    <article class="em_home_feature_item">
+      <svg class="em_home_feature_icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.5 14.5v-4a6.5 6.5 0 0113 0v4M8.5 14.5h15a2 2 0 012 2v9a2 2 0 01-2 2h-15a2 2 0 01-2-2v-9a2 2 0 012-2zM16 19.5v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3 class="em_home_feature_title">백업은 내 암호로 잠급니다</h3>
+      <p class="em_home_feature_desc"><span class="em_home_sentence">백업 파일은 직접 정하신 암호로 암호화되어 고르신 곳에 저장됩니다.</span><span class="em_home_sentence">기기를 바꾸실 때에도 그대로 옮겨 가실 수 있습니다.</span></p>
+    </article>
+    <article class="em_home_feature_item">
+      <svg class="em_home_feature_icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4.5h11l6.500 6.500V25A2.5 2.5 0 0123 27.5H8A2.5 2.5 0 015.500 25V7A2.5 2.5 0 018 4.5zM18.500 4.500V11.500h7M10.500 16.500h10.500v7H10.500zM10.500 20h10.500M15.500 16.500v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3 class="em_home_feature_title">Excel 가계부 불러오기 <span class="em_home_feature_soon">준비 중</span></h3>
+      <p class="em_home_feature_desc"><span class="em_home_sentence">다른 가계부 앱에서 내보낸 파일이나 직접 써 오신 Excel 가계부를 불러올 수 있도록 준비하고 있습니다.</span><span class="em_home_sentence">내역·자산·카드의 열을 에버머니의 항목에 직접 짝지어 주는 방식이라, 어떤 양식의 Excel이든 옮겨 오실 수 있습니다.</span></p>
+    </article>
+  </section>
+
+  <!-- 4. 복식부기 -->
+  <section class="em_home_double">
+    <div class="em_home_double_text">
+      <h2 class="em_home_section_title">복식부기로 적습니다</h2>
+      <p class="em_home_section_desc"><span class="em_home_sentence">복식부기는 모든 거래를 차변과 대변, 두 쪽에 같은 금액으로 함께 적는 방식입니다.</span><span class="em_home_sentence">돈이 어디로 갔는지와 어디에서 나왔는지가 늘 짝을 이루므로, 양쪽 합계가 맞지 않으면 빠뜨렸거나 두 번 적은 것이 바로 드러납니다.</span></p>
+      <p class="em_home_section_desc"><span class="em_home_sentence">에버머니는 이 원리로 수입·지출과 자산·카드 잔액을 함께 움직입니다.</span><span class="em_home_sentence">그래서 카드로 쓴 돈은 쓴 날 지출로 한 번만 잡히고, 통장 잔액은 결제일에 줄어듭니다.</span><span class="em_home_sentence">차변과 대변을 직접 나누실 필요는 없습니다.</span><span class="em_home_sentence">평소처럼 적으면 앱이 양쪽을 기록합니다.</span></p>
+    </div>
+    <div class="em_home_book">
+      <table class="em_home_book_table">
+        <caption class="em_home_book_caption">예시: 거래 세 건이 두 쪽에 적히는 모습</caption>
+        <thead>
+          <tr><th scope="col">거래</th><th scope="col">차변</th><th scope="col">대변</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">11.25<span>급여 입금</span></th><td>급여통장<span>3,200,000</span></td><td>수입<span>3,200,000</span></td></tr>
+          <tr><th scope="row">11.26<span>카드로 점심</span></th><td>지출<span>9,000</span></td><td>카드 미결제금액<span>9,000</span></td></tr>
+          <tr><th scope="row">12.14<span>카드대금 출금</span></th><td>카드 미결제금액<span>9,000</span></td><td>급여통장<span>9,000</span></td></tr>
+        </tbody>
+      </table>
+      <p class="em_home_book_note">차변에는 자산의 증가, 부채의 감소, 비용의 발생을 적고, 대변에는 자산의 감소, 부채의 증가, 수익의 발생을 적습니다.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="em_home_footer">
+  <p class="em_home_footer_copy"><a href="https://www.renocomms.com/" target="_blank" rel="noopener">© <span class="em_home_footer_year">2026</span> RENO Communications. All rights reserved.</a></p>
+  <a class="em_home_footer_link" href="privacy.html">개인정보 처리방침</a>
+</footer>
+
+<div class="em_home_toast" role="status" aria-live="polite"></div>
+
+<script src="js/em_home.js"></script>
 </body>
 </html>

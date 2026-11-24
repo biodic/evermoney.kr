@@ -1,0 +1,231 @@
+/* ******************************************************************************** */
+/* File: css/em_home.css                                                            */
+/* 에버머니 소개 페이지(index.html) 전용. privacy.html은 em_site.css를 쓴다.        */
+/* 색은 앱의 기본 테마와 같다 : 강조 #1999FC · 글자 #44362D · 바탕 #FEFDF8          */
+/* PC 기준 px. 720px 이하는 360px 기준 vw (360px = 100vw).                          */
+/* ******************************************************************************** */
+
+:root { --em_home_blue: #1999FC; --em_home_blue_deep: #0C6FC4; --em_home_ink: #44362D; --em_home_sub: #6E625A; --em_home_paper: #FEFDF8; --em_home_surface: #FFFFFF; --em_home_line: #E9E4DA; --em_home_slate: #537996; --em_home_mist: #EBEFF0; --em_home_out: #D93A3F; --em_home_in: #2460D8; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--em_home_paper); color: var(--em_home_ink); font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--em_home_blue_deep); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, p, ol { margin: 0; padding: 0; }
+ol { list-style: none; }
+
+/* 설명 글 : 문장마다 줄을 바꾸고 문장 사이를 조금 띄운다 */
+.em_home_sentence { display: block; }
+.em_home_sentence + .em_home_sentence { margin-top: 6px; }
+
+/* 첫 화면 */
+.em_home_hero { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); min-height: 760px; }
+.em_home_hero_text { display: flex; flex-direction: column; padding: 34px 64px 72px max(40px, calc((100vw - 1240px) / 2 + 40px)); }
+.em_home_top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.em_home_logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.em_home_logo_icon { width: 44px; height: 44px; }
+.em_home_logo_wordmark { position: relative; top: 4px; width: 200px; height: 29px; } /* 아래로 4px : y의 꼬리를 뺀 글자 몸통을 아이콘 가운데에 맞춘다 */
+.em_home_top_link { font-size: 14px; font-weight: 500; color: var(--em_home_slate); text-decoration: none; }
+.em_home_top_link:hover { text-decoration: underline; }
+.em_home_intro { margin: auto 0; padding-top: 56px; }
+.em_home_title { font-size: 54px; font-weight: 700; line-height: 1.28; letter-spacing: -0.025em; }
+.em_home_lead { max-width: 520px; margin-top: 26px; font-size: 18px; line-height: 1.8; color: var(--em_home_sub); }
+.em_home_store { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+.em_home_store_btn { display: block; border-radius: 9px; transition: opacity 0.15s ease, transform 0.15s ease; }
+.em_home_store_btn img { width: 168px; height: 56px; }
+.em_home_store_btn:hover { opacity: 0.86; }
+.em_home_store_btn:active { transform: scale(0.98); }
+.em_home_store_status { margin-top: 14px; font-size: 14px; color: var(--em_home_slate); }
+
+/* 첫 화면 오른쪽 : 세월이 쌓인 가계부 (예시) */
+.em_home_hero_diary { position: relative; overflow: hidden; background: var(--em_home_blue); }
+.em_home_diary_list { position: absolute; top: 88px; left: 50%; width: 400px; margin-left: -200px; display: flex; flex-direction: column; gap: 22px; }
+.em_home_diary_list::before { content: ""; position: absolute; top: 20px; bottom: -200px; left: 34px; width: 2px; background: rgba(255, 255, 255, 0.45); }
+.em_home_diary_item { position: relative; padding: 16px 20px 15px; border-radius: 18px; background: var(--em_home_surface); box-shadow: 0 14px 34px rgba(6, 62, 116, 0.22); animation: em_home_diary_in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.em_home_diary_item:nth-child(1) { animation-delay: 0.15s; }
+.em_home_diary_item:nth-child(2) { animation-delay: 0.45s; }
+.em_home_diary_item:nth-child(3) { animation-delay: 0.75s; }
+.em_home_diary_item:nth-child(4) { animation-delay: 1.05s; }
+.em_home_diary_item:nth-child(5) { animation-delay: 1.35s; }
+.em_home_diary_date { font-size: 13px; font-weight: 700; color: var(--em_home_slate); font-variant-numeric: tabular-nums; }
+.em_home_diary_row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.em_home_diary_type { flex: none; padding: 1px 7px; border-radius: 6px; font-size: 11.5px; font-weight: 700; line-height: 1.5; }
+.em_home_type_out { background: rgba(217, 58, 63, 0.11); color: var(--em_home_out); }
+.em_home_type_in { background: rgba(36, 96, 216, 0.11); color: var(--em_home_in); }
+.em_home_diary_name { flex: 1; min-width: 0; font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.em_home_diary_amount { flex: none; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.em_home_amount_out { color: var(--em_home_out); }
+.em_home_amount_in { color: var(--em_home_in); }
+.em_home_diary_memo { margin-top: 7px; padding-top: 7px; border-top: 1px dashed var(--em_home_line); font-family: "Nanum Pen Script", "Noto Sans KR", cursive; font-size: 26px; line-height: 1.2; color: var(--em_home_ink); }
+@keyframes em_home_diary_in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+/* 본문 공통 */
+.em_home_main { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.em_home_section_title { font-size: 38px; font-weight: 700; line-height: 1.35; letter-spacing: -0.02em; }
+.em_home_section_desc { max-width: 580px; margin-top: 20px; font-size: 17px; line-height: 1.85; color: var(--em_home_sub); }
+.em_home_section_desc + .em_home_section_desc { margin-top: 14px; }
+
+/* 1. 카드 */
+.em_home_card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 72px; padding: 120px 0 112px; }
+.em_home_point { margin: 36px 0 0; }
+.em_home_point_item { padding: 20px 0 20px 22px; border-left: 3px solid var(--em_home_blue); }
+.em_home_point_item + .em_home_point_item { margin-top: 14px; }
+.em_home_point_title { font-size: 19px; font-weight: 700; line-height: 1.5; letter-spacing: -0.01em; }
+.em_home_point_desc { max-width: 520px; margin: 6px 0 0; font-size: 16px; line-height: 1.8; color: var(--em_home_sub); }
+.em_home_bill { padding: 40px; border-radius: 28px; background: var(--em_home_mist); }
+.em_home_bill_sheet { padding: 26px 28px 24px; border-radius: 20px; background: var(--em_home_surface); box-shadow: 0 10px 28px rgba(68, 54, 45, 0.08); }
+.em_home_bill_goal { margin-top: 18px; }
+.em_home_bill_head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.em_home_bill_card { font-size: 18px; font-weight: 700; }
+.em_home_bill_due { padding: 3px 10px; border-radius: 8px; background: var(--em_home_mist); font-size: 13px; font-weight: 700; color: var(--em_home_slate); }
+.em_home_bill_done { padding: 3px 10px; border-radius: 8px; background: rgba(25, 153, 252, 0.14); font-size: 13px; font-weight: 700; color: var(--em_home_blue_deep); }
+.em_home_bill_row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: 15.5px; color: var(--em_home_sub); }
+.em_home_bill_num { font-weight: 500; font-variant-numeric: tabular-nums; color: var(--em_home_ink); white-space: nowrap; }
+.em_home_bill_row .em_home_bill_minus { color: var(--em_home_in); }
+.em_home_bill_total { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 10px; padding-top: 16px; border-top: 2px solid var(--em_home_ink); font-size: 16px; font-weight: 700; }
+.em_home_bill_total .em_home_bill_num { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: var(--em_home_out); }
+.em_home_bill_pay { margin-top: 16px; padding: 11px 14px; border-radius: 12px; background: var(--em_home_paper); font-size: 14px; font-weight: 500; color: var(--em_home_ink); }
+.em_home_goal_num { font-size: 15px; color: var(--em_home_sub); font-variant-numeric: tabular-nums; }
+.em_home_goal_num strong { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--em_home_ink); }
+.em_home_goal_bar { height: 10px; margin-top: 12px; border-radius: 5px; background: var(--em_home_mist); overflow: hidden; }
+.em_home_goal_fill { display: block; width: 100%; height: 100%; border-radius: 5px; background: var(--em_home_blue); }
+.em_home_goal_note { margin-top: 12px; font-size: 14px; color: var(--em_home_sub); }
+
+/* 2. 복식부기 */
+.em_home_double { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 72px; padding: 104px 0 112px; }
+.em_home_book { padding: 34px 36px 30px; border-radius: 28px; background: var(--em_home_surface); border: 1px solid var(--em_home_line); }
+.em_home_book_table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+.em_home_book_caption { caption-side: top; padding-bottom: 16px; font-size: 13.5px; color: var(--em_home_slate); text-align: left; }
+.em_home_book_table thead th { padding: 0 0 10px; border-bottom: 2px solid var(--em_home_ink); font-size: 14px; font-weight: 700; text-align: left; }
+.em_home_book_table thead th + th { padding-left: 18px; }
+.em_home_book_table tbody th, .em_home_book_table tbody td { padding: 15px 0; border-bottom: 1px solid var(--em_home_line); font-weight: 500; text-align: left; vertical-align: top; }
+.em_home_book_table tbody th { width: 30%; font-weight: 700; font-variant-numeric: tabular-nums; }
+.em_home_book_table tbody td { width: 35%; padding-left: 18px; border-left: 1px solid var(--em_home_line); }
+.em_home_book_table tbody th span, .em_home_book_table tbody td span { display: block; margin-top: 2px; font-size: 14px; font-weight: 400; color: var(--em_home_sub); font-variant-numeric: tabular-nums; }
+.em_home_book_note { margin-top: 18px; font-size: 13.5px; line-height: 1.75; color: var(--em_home_sub); }
+
+/* 3. 서버 없음 + 동기화 */
+.em_home_server { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 72px; padding: 104px 0 72px; border-top: 1px solid var(--em_home_line); }
+.em_home_flow { padding: 36px 32px 30px; border-radius: 28px; background: var(--em_home_mist); }
+.em_home_flow_line { display: flex; align-items: center; }
+.em_home_flow_node { flex: none; padding: 11px 18px; border-radius: 14px; background: var(--em_home_surface); font-size: 15px; font-weight: 700; white-space: nowrap; }
+.em_home_flow_cloud { background: var(--em_home_blue_deep); color: #FFFFFF; }
+.em_home_flow_link { flex: 1; min-width: 16px; height: 2px; background: var(--em_home_slate); opacity: 0.55; }
+.em_home_flow_none { margin-top: 22px; padding: 12px 16px; border: 2px dashed rgba(83, 121, 150, 0.5); border-radius: 14px; font-size: 14.5px; color: var(--em_home_slate); text-align: center; }
+.em_home_flow_none strong { margin-left: 4px; font-weight: 700; color: var(--em_home_ink); }
+.em_home_sync { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding-bottom: 112px; }
+.em_home_sync_item { padding: 30px 32px 6px 0; border-top: 2px solid var(--em_home_ink); }
+.em_home_sync_item + .em_home_sync_item { padding-left: 32px; border-left: 1px solid var(--em_home_line); }
+.em_home_sync_title { font-size: 21px; font-weight: 700; letter-spacing: -0.015em; }
+.em_home_sync_good { margin-top: 6px; font-size: 15px; font-weight: 700; color: var(--em_home_blue_deep); }
+.em_home_sync_desc { margin-top: 12px; font-size: 15.5px; line-height: 1.8; color: var(--em_home_sub); }
+
+/* 4. 그 밖의 기능 */
+.em_home_feature { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 72px; border-top: 1px solid var(--em_home_line); padding-bottom: 8px; }
+.em_home_feature_item { padding: 44px 0 44px 62px; position: relative; border-bottom: 1px solid var(--em_home_line); }
+.em_home_feature_icon { position: absolute; top: 46px; left: 0; width: 38px; height: 38px; color: var(--em_home_blue_deep); }
+.em_home_feature_title { font-size: 21px; font-weight: 700; line-height: 1.45; letter-spacing: -0.015em; }
+.em_home_feature_soon { display: inline-block; margin-left: 6px; padding: 2px 9px; border-radius: 8px; background: var(--em_home_mist); font-size: 12.5px; font-weight: 700; letter-spacing: 0; color: var(--em_home_slate); vertical-align: 3px; }
+.em_home_feature_desc { max-width: 480px; margin-top: 10px; font-size: 16px; line-height: 1.8; color: var(--em_home_sub); }
+
+/* 바닥 */
+.em_home_footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 1240px; margin: 0 auto; padding: 28px 40px 44px; font-size: 13.5px; color: var(--em_home_sub); }
+.em_home_footer_copy a { text-decoration: none; }
+.em_home_footer_copy a:hover { text-decoration: underline; }
+.em_home_footer_link { text-decoration: none; color: var(--em_home_slate); font-weight: 500; }
+.em_home_footer_link:hover { text-decoration: underline; }
+
+/* 알림 (받기 버튼을 눌렀을 때) */
+.em_home_toast { position: fixed; left: 50%; bottom: 36px; z-index: 10; max-width: calc(100vw - 40px); padding: 13px 22px; border-radius: 14px; background: var(--em_home_ink); color: #FFFFFF; font-size: 15px; font-weight: 500; text-align: center; box-shadow: 0 10px 30px rgba(68, 54, 45, 0.28); opacity: 0; visibility: hidden; transform: translate(-50%, 12px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; }
+.em_home_toast.em_home_toast_on { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { .em_home_diary_item { animation: none; } .em_home_store_btn, .em_home_toast { transition: none; } }
+
+/* 좁은 PC · 태블릿 가로 */
+@media (max-width: 1100px) { .em_home_title { font-size: 44px; } .em_home_hero_text { padding-right: 40px; } .em_home_diary_list { width: 340px; margin-left: -170px; } .em_home_section_title { font-size: 32px; } .em_home_card, .em_home_double, .em_home_server { gap: 40px; } .em_home_feature { column-gap: 40px; } .em_home_bill { padding: 24px; } .em_home_book { padding: 26px 24px 24px; } .em_home_flow { padding: 28px 20px 24px; } .em_home_flow_node { padding: 10px 13px; font-size: 14px; } .em_home_sync_item { padding-right: 20px; } .em_home_sync_item + .em_home_sync_item { padding-left: 20px; } }
+
+/* 모바일 : 360px 기준 vw */
+@media (max-width: 720px) {
+  .em_home_hero { display: block; min-height: 0; }
+  .em_home_sentence + .em_home_sentence { margin-top: 1.389vw; }
+  .em_home_hero_text { padding: 4.444vw 5.556vw 11.111vw; }
+  .em_home_top { gap: 3.333vw; }
+  .em_home_logo { gap: 2.222vw; }
+  .em_home_logo_icon { width: 9.444vw; height: 9.444vw; }
+  .em_home_logo_wordmark { top: 0.833vw; width: 38.889vw; height: 5.625vw; }
+  .em_home_top_link { font-size: 3.333vw; }
+  .em_home_intro { margin: 0; padding-top: 13.333vw; }
+  .em_home_title { font-size: 8.056vw; line-height: 1.32; }
+  .em_home_lead { max-width: none; margin-top: 5vw; font-size: 4.167vw; line-height: 1.75; }
+  .em_home_store { gap: 2.222vw; margin-top: 7.778vw; }
+  .em_home_store_btn { border-radius: 2.222vw; }
+  .em_home_store_btn img { width: 41.667vw; height: 13.889vw; }
+  .em_home_store_status { margin-top: 3.333vw; font-size: 3.472vw; }
+  .em_home_hero_diary { height: 150vw; }
+  .em_home_diary_list { top: 10vw; left: 6.667vw; right: 6.667vw; width: auto; margin-left: 0; gap: 4.444vw; }
+  .em_home_diary_list::before { top: 5.556vw; bottom: -55.556vw; left: 8.333vw; width: 0.556vw; }
+  .em_home_diary_item { padding: 3.889vw 4.722vw 3.611vw; border-radius: 4.444vw; box-shadow: 0 3.333vw 8.333vw rgba(6, 62, 116, 0.22); }
+  .em_home_diary_date { font-size: 3.333vw; }
+  .em_home_diary_row { gap: 1.944vw; margin-top: 1.389vw; }
+  .em_home_diary_type { padding: 0.278vw 1.667vw; border-radius: 1.389vw; font-size: 2.917vw; }
+  .em_home_diary_name { font-size: 4.167vw; }
+  .em_home_diary_amount { font-size: 4.167vw; }
+  .em_home_diary_memo { margin-top: 1.667vw; padding-top: 1.667vw; font-size: 6.667vw; }
+  .em_home_main { padding: 0 5.556vw; }
+  .em_home_section_title { font-size: 7.222vw; }
+  .em_home_section_desc { max-width: none; margin-top: 4.444vw; font-size: 4.167vw; line-height: 1.8; }
+  .em_home_section_desc + .em_home_section_desc { margin-top: 3.333vw; }
+  .em_home_card { display: block; padding: 17.778vw 0 16.667vw; }
+  .em_home_point { margin-top: 7.778vw; }
+  .em_home_point_item { padding: 3.889vw 0 3.889vw 4.444vw; border-left-width: 0.833vw; }
+  .em_home_point_item + .em_home_point_item { margin-top: 3.333vw; }
+  .em_home_point_title { font-size: 4.722vw; }
+  .em_home_point_desc { max-width: none; margin-top: 1.389vw; font-size: 4.028vw; line-height: 1.75; }
+  .em_home_bill { margin-top: 10vw; padding: 4.444vw; border-radius: 6.111vw; }
+  .em_home_bill_sheet { padding: 5.556vw 5.556vw 5vw; border-radius: 4.444vw; box-shadow: 0 2.778vw 7.778vw rgba(68, 54, 45, 0.08); }
+  .em_home_bill_goal { margin-top: 3.333vw; }
+  .em_home_bill_head { gap: 2.222vw; margin-bottom: 3.333vw; }
+  .em_home_bill_card { font-size: 4.722vw; }
+  .em_home_bill_due { padding: 0.556vw 2.500vw; border-radius: 2.222vw; font-size: 3.333vw; }
+  .em_home_bill_done { padding: 0.556vw 2.500vw; border-radius: 2.222vw; font-size: 3.333vw; }
+  .em_home_bill_row { gap: 2.222vw; padding: 1.667vw 0; font-size: 3.889vw; }
+  .em_home_bill_total { gap: 2.222vw; margin-top: 2.222vw; padding-top: 3.889vw; border-top-width: 0.556vw; font-size: 4.167vw; }
+  .em_home_bill_total .em_home_bill_num { font-size: 7.500vw; }
+  .em_home_bill_pay { margin-top: 3.889vw; padding: 2.778vw 3.333vw; border-radius: 3.056vw; font-size: 3.611vw; }
+  .em_home_goal_num { font-size: 3.889vw; }
+  .em_home_goal_num strong { font-size: 6.111vw; }
+  .em_home_goal_bar { height: 2.500vw; margin-top: 2.778vw; border-radius: 1.250vw; }
+  .em_home_goal_fill { border-radius: 1.250vw; }
+  .em_home_goal_note { margin-top: 2.778vw; font-size: 3.611vw; }
+  .em_home_double { display: block; padding: 16.667vw 0; }
+  .em_home_book { margin-top: 10vw; padding: 5.556vw 4.444vw 5vw; border-radius: 6.111vw; }
+  .em_home_book_table { font-size: 3.750vw; }
+  .em_home_book_caption { padding-bottom: 3.333vw; font-size: 3.333vw; }
+  .em_home_book_table thead th { padding-bottom: 2.222vw; border-bottom-width: 0.556vw; font-size: 3.472vw; }
+  .em_home_book_table thead th + th { padding-left: 2.778vw; }
+  .em_home_book_table tbody th, .em_home_book_table tbody td { padding: 3.333vw 0; }
+  .em_home_book_table tbody td { padding-left: 2.778vw; }
+  .em_home_book_table tbody th span, .em_home_book_table tbody td span { margin-top: 0.556vw; font-size: 3.333vw; }
+  .em_home_book_note { margin-top: 4.444vw; font-size: 3.333vw; }
+  .em_home_server { display: block; padding: 16.667vw 0 11.111vw; }
+  .em_home_flow { margin-top: 8.889vw; padding: 6.667vw 4.444vw 5.556vw; border-radius: 6.111vw; }
+  .em_home_flow_node { padding: 2.500vw 3.056vw; border-radius: 3.333vw; font-size: 3.611vw; }
+  .em_home_flow_link { min-width: 2.222vw; height: 0.556vw; }
+  .em_home_flow_none { margin-top: 4.444vw; padding: 2.778vw 3.333vw; border-width: 0.556vw; border-radius: 3.333vw; font-size: 3.611vw; }
+  .em_home_flow_none strong { margin-left: 1.111vw; }
+  .em_home_sync { display: block; padding-bottom: 16.667vw; }
+  .em_home_sync_item { padding: 6.111vw 0 7.222vw; border-top-width: 0.556vw; }
+  .em_home_sync_item + .em_home_sync_item { padding-left: 0; border-left: 0; }
+  .em_home_sync_title { font-size: 5vw; }
+  .em_home_sync_good { margin-top: 1.111vw; font-size: 3.889vw; }
+  .em_home_sync_desc { margin-top: 2.222vw; font-size: 4.028vw; line-height: 1.75; }
+  .em_home_feature { display: block; padding-bottom: 0; }
+  .em_home_feature_item { padding: 8.889vw 0 8.889vw 13.889vw; }
+  .em_home_feature_icon { top: 9.444vw; width: 9.444vw; height: 9.444vw; }
+  .em_home_feature_title { font-size: 5vw; }
+  .em_home_feature_soon { margin-left: 1.111vw; padding: 0.556vw 2.222vw; border-radius: 2.222vw; font-size: 3.194vw; vertical-align: 0.833vw; }
+  .em_home_feature_desc { max-width: none; margin-top: 2.222vw; font-size: 4.028vw; line-height: 1.75; }
+  .em_home_footer { flex-direction: column; align-items: flex-start; gap: 2.222vw; padding: 6.667vw 5.556vw 11.111vw; font-size: 3.333vw; }
+  .em_home_toast { bottom: 6.667vw; max-width: 88.889vw; width: max-content; padding: 3.333vw 5vw; border-radius: 3.889vw; font-size: 3.889vw; }
+}
