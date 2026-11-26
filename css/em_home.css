@@ -66,6 +66,22 @@ ol { list-style: none; }
 .em_home_section_desc { max-width: 580px; margin-top: 20px; font-size: 17px; line-height: 1.85; color: var(--em_home_sub); }
 .em_home_section_desc + .em_home_section_desc { margin-top: 14px; }
 
+/* 1-1. 쓰던 가계부 옮겨 오기 (카드 다음) */
+.em_home_move { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 72px; padding: 104px 0 112px; border-top: 1px solid var(--em_home_line); }
+.em_home_move_box { padding: 40px; border-radius: 28px; background: var(--em_home_mist); }
+.em_home_move_files { display: flex; flex-direction: column; gap: 12px; }
+.em_home_move_file { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 16px; background: var(--em_home_surface); box-shadow: 0 6px 18px rgba(68, 54, 45, 0.06); font-size: 15.5px; font-weight: 500; }
+.em_home_move_ext { flex: none; width: 60px; padding: 3px 0; border-radius: 8px; background: var(--em_home_mist); font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; color: var(--em_home_slate); text-align: center; }
+.em_home_move_arrow { position: relative; width: 2px; height: 34px; margin: 16px auto 24px; background: var(--em_home_slate); opacity: 0.6; }
+.em_home_move_arrow::after { content: ""; position: absolute; left: 50%; bottom: -7px; margin-left: -7px; border: 7px solid transparent; border-top-color: var(--em_home_slate); border-bottom: 0; }
+.em_home_move_result { padding: 22px 24px 20px; border-radius: 20px; background: var(--em_home_blue_deep); color: #FFFFFF; }
+.em_home_move_result_head { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; }
+.em_home_move_result_head img { width: 22px; height: 22px; border-radius: 6px; }
+.em_home_move_result_num { margin-top: 8px; font-size: 17px; font-weight: 500; }
+.em_home_move_result_num strong { margin-right: 2px; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.em_home_move_result_note { margin-top: 2px; font-size: 14px; color: rgba(255, 255, 255, 0.8); }
+.em_home_move_tip { margin-top: 16px; font-size: 13.5px; color: var(--em_home_slate); text-align: center; }
+
 /* 1. 카드 */
 .em_home_card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 72px; padding: 120px 0 112px; }
 .em_home_point { margin: 36px 0 0; }
@@ -126,7 +142,6 @@ ol { list-style: none; }
 .em_home_feature_item { padding: 44px 0 44px 62px; position: relative; border-bottom: 1px solid var(--em_home_line); }
 .em_home_feature_icon { position: absolute; top: 46px; left: 0; width: 38px; height: 38px; color: var(--em_home_blue_deep); }
 .em_home_feature_title { font-size: 21px; font-weight: 700; line-height: 1.45; letter-spacing: -0.015em; }
-.em_home_feature_soon { display: inline-block; margin-left: 6px; padding: 2px 9px; border-radius: 8px; background: var(--em_home_mist); font-size: 12.5px; font-weight: 700; letter-spacing: 0; color: var(--em_home_slate); vertical-align: 3px; }
 .em_home_feature_desc { max-width: 480px; margin-top: 10px; font-size: 16px; line-height: 1.8; color: var(--em_home_sub); }
 
 /* 바닥 */
@@ -143,7 +158,7 @@ ol { list-style: none; }
 @media (prefers-reduced-motion: reduce) { .em_home_diary_item { animation: none; } .em_home_store_btn, .em_home_toast { transition: none; } }
 
 /* 좁은 PC · 태블릿 가로 */
-@media (max-width: 1100px) { .em_home_title { font-size: 44px; } .em_home_hero_text { padding-right: 40px; } .em_home_diary_list { width: 340px; margin-left: -170px; } .em_home_section_title { font-size: 32px; } .em_home_card, .em_home_double, .em_home_server { gap: 40px; } .em_home_feature { column-gap: 40px; } .em_home_bill { padding: 24px; } .em_home_book { padding: 26px 24px 24px; } .em_home_flow { padding: 28px 20px 24px; } .em_home_flow_node { padding: 10px 13px; font-size: 14px; } .em_home_sync_item { padding-right: 20px; } .em_home_sync_item + .em_home_sync_item { padding-left: 20px; } }
+@media (max-width: 1100px) { .em_home_title { font-size: 44px; } .em_home_hero_text { padding-right: 40px; } .em_home_diary_list { width: 340px; margin-left: -170px; } .em_home_section_title { font-size: 32px; } .em_home_card, .em_home_double, .em_home_server, .em_home_move { gap: 40px; } .em_home_move_box { padding: 24px; } .em_home_feature { column-gap: 40px; } .em_home_bill { padding: 24px; } .em_home_book { padding: 26px 24px 24px; } .em_home_flow { padding: 28px 20px 24px; } .em_home_flow_node { padding: 10px 13px; font-size: 14px; } .em_home_sync_item { padding-right: 20px; } .em_home_sync_item + .em_home_sync_item { padding-left: 20px; } }
 
 /* 모바일 : 360px 기준 vw */
 @media (max-width: 720px) {
@@ -176,6 +191,20 @@ ol { list-style: none; }
   .em_home_section_title { font-size: 7.222vw; }
   .em_home_section_desc { max-width: none; margin-top: 4.444vw; font-size: 4.167vw; line-height: 1.8; }
   .em_home_section_desc + .em_home_section_desc { margin-top: 3.333vw; }
+  .em_home_move { display: block; padding: 16.667vw 0; }
+  .em_home_move_box { margin-top: 10vw; padding: 4.444vw; border-radius: 6.111vw; }
+  .em_home_move_files { gap: 2.778vw; }
+  .em_home_move_file { gap: 3.333vw; padding: 3.333vw 3.889vw; border-radius: 3.889vw; box-shadow: 0 1.667vw 5vw rgba(68, 54, 45, 0.06); font-size: 3.889vw; }
+  .em_home_move_ext { width: 15vw; padding: 0.833vw 0; border-radius: 2.222vw; font-size: 2.917vw; }
+  .em_home_move_arrow { width: 0.556vw; height: 8.333vw; margin: 3.889vw auto 5.556vw; }
+  .em_home_move_arrow::after { bottom: -1.944vw; margin-left: -1.944vw; border-width: 1.944vw; border-bottom-width: 0; }
+  .em_home_move_result { padding: 5vw 5.556vw 4.722vw; border-radius: 4.444vw; }
+  .em_home_move_result_head { gap: 2.222vw; font-size: 3.611vw; }
+  .em_home_move_result_head img { width: 6.111vw; height: 6.111vw; border-radius: 1.667vw; }
+  .em_home_move_result_num { margin-top: 2.222vw; font-size: 4.444vw; }
+  .em_home_move_result_num strong { font-size: 7.5vw; }
+  .em_home_move_result_note { margin-top: 0.556vw; font-size: 3.611vw; }
+  .em_home_move_tip { margin-top: 3.889vw; font-size: 3.333vw; }
   .em_home_card { display: block; padding: 17.778vw 0 16.667vw; }
   .em_home_point { margin-top: 7.778vw; }
   .em_home_point_item { padding: 3.889vw 0 3.889vw 4.444vw; border-left-width: 0.833vw; }
@@ -224,7 +253,6 @@ ol { list-style: none; }
   .em_home_feature_item { padding: 8.889vw 0 8.889vw 13.889vw; }
   .em_home_feature_icon { top: 9.444vw; width: 9.444vw; height: 9.444vw; }
   .em_home_feature_title { font-size: 5vw; }
-  .em_home_feature_soon { margin-left: 1.111vw; padding: 0.556vw 2.222vw; border-radius: 2.222vw; font-size: 3.194vw; vertical-align: 0.833vw; }
   .em_home_feature_desc { max-width: none; margin-top: 2.222vw; font-size: 4.028vw; line-height: 1.75; }
   .em_home_footer { flex-direction: column; align-items: flex-start; gap: 2.222vw; padding: 6.667vw 5.556vw 11.111vw; font-size: 3.333vw; }
   .em_home_toast { bottom: 6.667vw; max-width: 88.889vw; width: max-content; padding: 3.333vw 5vw; border-radius: 3.889vw; font-size: 3.889vw; }
